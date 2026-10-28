@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Einarmiger Bandit · New York 1925</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔔</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <p class="kicker">Harlem · Januar 1925</p>
+    <h1>Der einarmige Bandit</h1>
+    <p class="sub">Nach Art der „Liberty Bell“ · drei Walzen · zwanzig Münzen pro Besuch</p>
+  </header>
+
+  <main>
+    <section id="setup" class="panel" aria-labelledby="setup-h">
+      <h2 id="setup-h">An den Automaten</h2>
+      <label class="field">Investigator
+        <select id="who">
+          <option>Jack Zora</option>
+          <option>Maximilian von Hapsburg</option>
+          <option>Rev. Abraham Blackwood</option>
+          <option>Cpt. Ernest Wallace Stickhard</option>
+          <option>Tex</option>
+          <option value="">Jemand anderes …</option>
+        </select>
+      </label>
+      <label class="field" id="other-wrap" hidden>Name
+        <input id="other" type="text" maxlength="40" autocomplete="off">
+      </label>
+      <fieldset class="modes">
+        <legend>Welcher Automat?</legend>
+        <label class="mode"><input type="radio" name="mode" value="klein" checked>
+          <span><b>Kleingeld</b> — <span data-blurb="klein"></span></span></label>
+        <label class="mode"><input type="radio" name="mode" value="gross">
+          <span><b>Großer Einsatz</b> — <span data-blurb="gross"></span></span></label>
+      </fieldset>
+      <button id="start" class="btn primary">Zwanzig Münzen in den Beutel</button>
+      <p class="hint">Ein Besuch pro In-Game-Tag. Die Quittung am Ende geht an den Spielleiter.</p>
+    </section>
+
+    <section id="machine" class="cabinet" hidden aria-labelledby="mach-h">
+      <h2 id="mach-h" class="plate"><span id="plate-who"></span> · <span id="plate-mode"></span></h2>
+      <div class="reels" role="img" aria-label="Walzen">
+        <div class="reel"><div class="sym above"></div><div class="sym line"></div><div class="sym below"></div></div>
+        <div class="reel"><div class="sym above"></div><div class="sym line"></div><div class="sym below"></div></div>
+        <div class="reel"><div class="sym above"></div><div class="sym line"></div><div class="sym below"></div></div>
+        <div class="payline" aria-hidden="true"></div>
+      </div>
+      <p id="msg" class="msg" aria-live="polite">Münze einwerfen, Hebel ziehen.</p>
+      <div class="counters">
+        <div><span class="lbl">Beutel</span><span id="bag" class="num">20</span></div>
+        <div><span class="lbl">Gewinnschale</span><span id="tray" class="num">0</span></div>
+      </div>
+      <div class="controls">
+        <button id="pull" class="btn lever">Hebel ziehen <kbd>Leertaste</kbd></button>
+        <button id="stop" class="btn">Aufhören</button>
+      </div>
+      <table class="paytable" aria-label="Gewinntafel">
+        <caption>Gewinntafel — Münzen je Einwurf</caption>
+        <tbody id="paytable"></tbody>
+      </table>
+    </section>
+
+    <section id="done" class="panel" hidden aria-labelledby="done-h">
+      <h2 id="done-h">Quittung</h2>
+      <pre id="receipt"></pre>
+      <div class="controls">
+        <button id="copy" class="btn primary">Kopieren</button>
+        <button id="again" class="btn">Neuer Besuch</button>
+      </div>
+    </section>
+
+    <details class="panel keeper">
+      <summary>Quittung prüfen (Spielleiter)</summary>
+      <textarea id="check-in" rows="9" placeholder="Quittung hier einfügen"></textarea>
+      <button id="check" class="btn">Prüfen</button>
+      <p id="check-out" aria-live="polite"></p>
+    </details>
+  </main>
+
+  <footer>Masken des Nyarlathotep · Tischwerkzeug. Münzen sind Flair — nur der Große Einsatz bewegt die Finanzkraft (max. ±1 pro Besuch).</footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
